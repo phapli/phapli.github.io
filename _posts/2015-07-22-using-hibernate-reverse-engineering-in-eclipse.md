@@ -16,3 +16,4 @@ After that, searching on the internet to find correct version of Hibernate plugi
 
 In Eclipse IDE, menu bar, select "__Help__" >> "__Install New Software …__" , put the Hibernate Url here.
 
+![alt text](a/1.PNG "Logo Title Text 1")
