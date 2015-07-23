@@ -19,7 +19,7 @@ http://download.jboss.org/jbosstools/updates/stable/luna/
 
 In Eclipse IDE, menu bar, select "__Help__" >> "__Install New Software...__" , put the Hibernate Url here.
 
-![alt text](https://cloud.githubusercontent.com/assets/1092116/8832483/8bf21374-30d3-11e5-8a41-26d2467066fd.PNG "Logo Title Text 1")
+![Install Hibernate Plugin](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/1.PNG "Install Hibernate Plugin")
 
 Following the instruction to complete installing.
 Finally, restart Eclipse to take effect.
@@ -29,51 +29,50 @@ Finally, restart Eclipse to take effect.
 1. Open Hibernate Perspective in Eclipse.
  
 	Select "__Windows__" >> "__Open Perspective__" >> "__Others...__" , choose "__Hibernate__".
-
+	
 2. New a hibernate configuration.
 
-	i. In Hibernate Perspective, right click and select "__Add Configuration...__" or click on "__+__" button.
+	1. In Hibernate Perspective, right click and select "__Add Configuration...__" or click on "__+__" button.
+	
+	![New Hibernate Configuration](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/2.PNG "New Hibernate Configuration")
+	
 	2. In "__Edit Configuration__" dialog box,
 		* In "__Project__" box, click on the "__Browse...__" button to select your project.
 		* In "__Database Connection__" box, click "__New...__" button to create your database settings.
 		* In "__Configuration File__" box, click "__Setup__" button to create a new or use existing "__Hibernate configuration file__", hibernate.cfg.xml.
-	
+		
+		![Open Hibernate Perspective](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/3.PNG "Open Hibernate Perspective")
+		
 		*hibernate.cfg.xml example for MySql connection*
 		
-		```xml
-			<?xml version="1.0" encoding="utf-8"?>
-			<!DOCTYPE hibernate-configuration PUBLIC
-			"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-			"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-			<hibernate-configuration>
-				<session-factory>
-					<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-					<property name="hibernate.connection.password">MTIzYWJjISEh</property>
-					<property name="hibernate.connection.url">jdbc:mysql://192.168.1.11:3306/Token_DB_FPT?autoReconnect=true</property>
-					<property name="hibernate.connection.username">username</property>
-					<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-					<property name="hibernate.search.autoregister_listeners">false</property>
-					<property name="hibernate.show_sql">false</property>
-					<property name="hibernate.validator.apply_to_ddl">false</property>
-				</session-factory>
-			</hibernate-configuration>
-		```
+		![hibernate.cfg.xml](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/4.PNG "hibernate.cfg.xml")
+		
+		* Refresh to see the result (all tables from your database)
+		
+		![Tables](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/5.PNG "Tables")
+		
 		
 3. Run Hibernate Code Generation.
 	1. In "__Hibernate Perspective__", click "__Hibernate code generation__" icon (see below figure) and select "__Hibernate Code Generation Configuration__"
 	
+	![Hibernate Code Generation](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/6.PNG "Hibernate Code Generation")
 
+	2. Create a new configuration, fill "__name__" field, select "__Console Configuration__" at the configuration which you have created, browse to "__Output directory__" and check option "__Reverse engineer from JDBC Connection__".
 
+	![Input](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/7.PNG "Input")
+	
+	3. In "__Exporters__" tab, select options that you want to generate.
+	
+	![Generate](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/8.PNG "Generate")
 
-
-
-
-
-
-
-
+	4. Run, and see the result.
+	
+	![Result](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/9.PNG "Result")
 
 
 ##Reference
 <http://www.hibernate.org/subprojects/tools.html>
+
 <http://www.jboss.org/tools/download>
+
+<http://www.mkyong.com/hibernate/how-to-generate-code-with-hibernate-tools/>
