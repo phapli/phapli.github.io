@@ -21,22 +21,22 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 3. Create HelloWorld interface with hello method.	
 
 	{% highlight java %}
-	package com.phapli.helloworld;
-	/*
-	 * @author: phapli
-	 */
+		package com.phapli.helloworld;
+		/*
+		 * @author: phapli
+		 */
 
-	import javax.jws.WebMethod;
-	import javax.jws.WebParam;
-	import javax.jws.WebService;
+		import javax.jws.WebMethod;
+		import javax.jws.WebParam;
+		import javax.jws.WebService;
 
-	@WebService
-	public interface HelloWorld {
+		@WebService
+		public interface HelloWorld {
 
-		@WebMethod
-		public String hello(@WebParam(name = "name") String name);
+			@WebMethod
+			public String hello(@WebParam(name = "name") String name);
 
-	}
+		}
 	{% endhighlight %}
 
 4. Create HelloWorldImpl class, which is implementation of HelloWorld.
