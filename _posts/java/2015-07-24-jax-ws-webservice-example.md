@@ -4,16 +4,6 @@ title: Jax-ws Webservice Example
 comments: true
 ---
 
-{% highlight ruby %}
-def show
-  @widget = Widget(params[:id])
-  respond_to do |format|
-    format.html # show.html.erb
-    format.json { render json: @widget }
-  end
-end
-{% endhighlight %}
-
 >[Jax-ws](jax-ws.java.net) (Java API for XML Web Services) is a Java API for developing Web service with XML format (SOAP). 
 
 In this port, I will show you how to create a SOAP Web service in eclipse and build a client to test this service.    
@@ -29,8 +19,7 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 	![New Dynamic Web Project](/resources/2015-07-24-jax-ws-webservice-example/2.PNG "New Dynamic Web Project")
 	
 3. Create HelloWorld interface with hello method.	
-	<pre>
-	  <code class="java">
+	{% highlight java %}
 		package com.phapli.helloworld;
 		/*
 		 * @author: phapli
@@ -47,8 +36,7 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 			public String hello(@WebParam(name = "name") String name);
 
 		}
-	  </code>
-	</pre>
+	{% endhighlight %}
 4. Create HelloWorldImpl class, which is implementation of HelloWorld.
 	<pre>
 	  <code class="java">
