@@ -20,80 +20,80 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 	
 3. Create HelloWorld interface with hello method.	
 
-	{% highlight java %}
-		package com.phapli.helloworld;
-		/*
-		 * @author: phapli
-		 */
+{% highlight java %}
+package com.phapli.helloworld;
+/*
+ * @author: phapli
+ */
 
-		import javax.jws.WebMethod;
-		import javax.jws.WebParam;
-		import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
 
-		@WebService
-		public interface HelloWorld {
+@WebService
+public interface HelloWorld {
 
-			@WebMethod
-			public String hello(@WebParam(name = "name") String name);
+	@WebMethod
+	public String hello(@WebParam(name = "name") String name);
 
-		}
-	{% endhighlight %}
+}
+{% endhighlight %}
 
 4. Create HelloWorldImpl class, which is implementation of HelloWorld.
 
-	{% highlight java %}
-	package com.phapli.helloworld;
+{% highlight java %}
+package com.phapli.helloworld;
 
-	/*
-	 * @author: phapli
-	 */
+/*
+ * @author: phapli
+ */
 
-	import javax.jws.WebService;
+import javax.jws.WebService;
 
-	@WebService(endpointInterface = "com.phapli.helloworld.HelloWorld")
-	public class HelloWorldImpl implements HelloWorld {
+@WebService(endpointInterface = "com.phapli.helloworld.HelloWorld")
+public class HelloWorldImpl implements HelloWorld {
 
-		@Override
-		public String hello(String name) {
-			return "Hello " + name;
-		}
-
+	@Override
+	public String hello(String name) {
+		return "Hello " + name;
 	}
-	{% endhighlight %}
+
+}
+{% endhighlight %}
 
 5. In "__WebContent/WEB-INF__" folder, create two files (_sun-jaxws.xml_, and _web.xml_)
 
-	{% highlight xml %}
-	<?xml version="1.0" encoding="UTF-8"?>  
-	<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">  
-	  <endpoint  
-		 name="HelloWorld"  
-		 implementation="com.phapli.helloworld.HelloWorldImpl"  
-		 url-pattern="/HelloWorld"/>  
-	</endpoints> 
-	{% endhighlight %}
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>  
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">  
+  <endpoint  
+	 name="HelloWorld"  
+	 implementation="com.phapli.helloworld.HelloWorldImpl"  
+	 url-pattern="/HelloWorld"/>  
+</endpoints> 
+{% endhighlight %}
 
-	{% highlight java %}
-	<?xml version="1.0" encoding="UTF-8"?>
-	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-	  <display-name>HelloWorld</display-name>
-	  <listener>
-		<listener-class>  
-			com.sun.xml.ws.transport.http.servlet.WSServletContextListener  
-		 </listener-class>
-	  </listener>
-	  <servlet>
-		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>  
-			com.sun.xml.ws.transport.http.servlet.WSServlet
-		</servlet-class>
-	  </servlet>
-	  <servlet-mapping>
-		<servlet-name>HelloWorld</servlet-name>
-		<url-pattern>/HelloWorld</url-pattern>
-	  </servlet-mapping>
-	</web-app>
-	{% endhighlight %}
+{% highlight java %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>HelloWorld</display-name>
+  <listener>
+	<listener-class>  
+		com.sun.xml.ws.transport.http.servlet.WSServletContextListener  
+	 </listener-class>
+  </listener>
+  <servlet>
+	<servlet-name>HelloWorld</servlet-name>
+	<servlet-class>  
+		com.sun.xml.ws.transport.http.servlet.WSServlet
+	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>HelloWorld</servlet-name>
+	<url-pattern>/HelloWorld</url-pattern>
+  </servlet-mapping>
+</web-app>
+{% endhighlight %}
 
 6. To generate a jax-ws, we need some libraries. 
 	* jaxb-impl.jar
@@ -107,9 +107,9 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 	
 7. Using wsgen (a tool of JDK) to generate Web service. Open terminal, go to project folder, and run this script.
 
-	{% highlight bash %}
-	wsgen -s src -d build/classes -cp build/classes com.phapli.helloworld.HelloWorldImpl
-	{% endhighlight %}
+{% highlight bash %}
+wsgen -s src -d build/classes -cp build/classes com.phapli.helloworld.HelloWorldImpl
+{% endhighlight %}
 
 	![wsgen](/resources/2015-07-24-jax-ws-webservice-example/3.PNG "wsgen")
 	
@@ -129,44 +129,44 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 	
 2. Use wsimport (a tool of JDK) to generate Stub from wsdl url. Open terminal, go to project folder, and run this script.
 	
-	{% highlight bash %}
-	wsimport -d src -extension -keep -p com.tomica.coremb -XadditionalHeaders http://localhost:8080/HelloWorld/HelloWorld?wsdl
-	{% endhighlight %}
+{% highlight bash %}
+wsimport -d src -extension -keep -p com.tomica.coremb -XadditionalHeaders http://localhost:8080/HelloWorld/HelloWorld?wsdl
+{% endhighlight %}
 
 	![wsimport](/resources/2015-07-24-jax-ws-webservice-example/7.PNG "wsimport")	
 
 3. Create Client class with main method to test this service.	
 
-	{% highlight java %}
-	package com.phapli.client;
+{% highlight java %}
+package com.phapli.client;
 
-	import java.net.MalformedURLException;
-	import java.net.URL;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-	import com.phapli.helloworld.HelloWorld;
-	import com.phapli.helloworld.HelloWorldImplService;
+import com.phapli.helloworld.HelloWorld;
+import com.phapli.helloworld.HelloWorldImplService;
 
-	public class Client {
+public class Client {
 
-		public static void main(String[] args) {
-			try {
-				// init webservice port
-				HelloWorldImplService service = new HelloWorldImplService(new URL(
-						"http://localhost:8080/HelloWorld/HelloWorld?wsdl"));
-				HelloWorld port = service.getHelloWorldImplPort();
-				
-				// call hello method
-				String response = port.hello("phapli");
+	public static void main(String[] args) {
+		try {
+			// init webservice port
+			HelloWorldImplService service = new HelloWorldImplService(new URL(
+					"http://localhost:8080/HelloWorld/HelloWorld?wsdl"));
+			HelloWorld port = service.getHelloWorldImplPort();
+			
+			// call hello method
+			String response = port.hello("phapli");
 
-				System.out.println(response);
+			System.out.println(response);
 
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
 		}
-
 	}
-	{% endhighlight %}	
+
+}
+{% endhighlight %}	
  
 4. Run this class to see the result.
 
