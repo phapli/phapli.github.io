@@ -19,81 +19,78 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 	![New Dynamic Web Project](/resources/2015-07-24-jax-ws-webservice-example/2.PNG "New Dynamic Web Project")
 	
 3. Create HelloWorld interface with hello method.	
-	{% highlight java %}
-		package com.phapli.helloworld;
-		/*
-		 * @author: phapli
-		 */
+{% highlight java %}
+package com.phapli.helloworld;
+/*
+ * @author: phapli
+ */
 
-		import javax.jws.WebMethod;
-		import javax.jws.WebParam;
-		import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
 
-		@WebService
-		public interface HelloWorld {
+@WebService
+public interface HelloWorld {
 
-			@WebMethod
-			public String hello(@WebParam(name = "name") String name);
+	@WebMethod
+	public String hello(@WebParam(name = "name") String name);
 
-		}
-	{% endhighlight %}
+}
+{% endhighlight %}
 4. Create HelloWorldImpl class, which is implementation of HelloWorld.
-	<pre>
-	  <code class="java">
-		package com.phapli.helloworld;
+{% highlight java %}
+package com.phapli.helloworld;
 
-		/*
-		 * @author: phapli
-		 */
+/*
+ * @author: phapli
+ */
 
-		import javax.jws.WebService;
+import javax.jws.WebService;
 
-		@WebService(endpointInterface = "com.phapli.helloworld.HelloWorld")
-		public class HelloWorldImpl implements HelloWorld {
+@WebService(endpointInterface = "com.phapli.helloworld.HelloWorld")
+public class HelloWorldImpl implements HelloWorld {
 
-			@Override
-			public String hello(String name) {
-				return "Hello " + name;
-			}
+	@Override
+	public String hello(String name) {
+		return "Hello " + name;
+	}
 
-		}
-	  </code>
-	</pre>
+}
+{% endhighlight %}
 5. In "__WebContent/WEB-INF__" folder, create two files (_sun-jaxws.xml_, and _web.xml_)
-	<pre>
-	  <code class="xml">
-		<?xml version="1.0" encoding="UTF-8"?>  
-		<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">  
-		  <endpoint  
-			 name="HelloWorld"  
-			 implementation="com.phapli.helloworld.HelloWorldImpl"  
-			 url-pattern="/HelloWorld"/>  
-		</endpoints> 
-	  </code>
-	</pre>
-		<pre>
-	  <code class="xml">
-		<?xml version="1.0" encoding="UTF-8"?>
-		<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-		  <display-name>HelloWorld</display-name>
-		  <listener>
-			<listener-class>  
-				com.sun.xml.ws.transport.http.servlet.WSServletContextListener  
-			 </listener-class>
-		  </listener>
-		  <servlet>
-			<servlet-name>HelloWorld</servlet-name>
-			<servlet-class>  
-				com.sun.xml.ws.transport.http.servlet.WSServlet
-			</servlet-class>
-		  </servlet>
-		  <servlet-mapping>
-			<servlet-name>HelloWorld</servlet-name>
-			<url-pattern>/HelloWorld</url-pattern>
-		  </servlet-mapping>
-		</web-app>
-	  </code>
-	</pre>
+{% highlight xml %}
+<?xml version="1.0" encoding="UTF-8"?>  
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">  
+  <endpoint  
+	 name="HelloWorld"  
+	 implementation="com.phapli.helloworld.HelloWorldImpl"  
+	 url-pattern="/HelloWorld"/>  
+</endpoints> 
+{% endhighlight %}
+{% highlight java %}
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>HelloWorld</display-name>
+  <listener>
+	<listener-class>  
+		com.sun.xml.ws.transport.http.servlet.WSServletContextListener  
+	 </listener-class>
+  </listener>
+  <servlet>
+	<servlet-name>HelloWorld</servlet-name>
+	<servlet-class>  
+		com.sun.xml.ws.transport.http.servlet.WSServlet
+	</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>HelloWorld</servlet-name>
+	<url-pattern>/HelloWorld</url-pattern>
+  </servlet-mapping>
+</web-app>
+{% endhighlight %}
+
+
+
 In Eclipse IDE, menu bar, select "__Help__" >> "__Install New Software...__" , put the Hibernate Url here.
 
 ![Install Hibernate Plugin](/resources/2015-07-22-using-hibernate-reverse-engineering-in-eclipse/1.PNG "Install Hibernate Plugin")
