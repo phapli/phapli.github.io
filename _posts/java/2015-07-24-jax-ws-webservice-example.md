@@ -19,6 +19,7 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 	![New Dynamic Web Project](/resources/2015-07-24-jax-ws-webservice-example/2.PNG "New Dynamic Web Project")
 	
 3. Create HelloWorld interface with hello method.	
+
 {% highlight java %}
 package com.phapli.helloworld;
 /*
@@ -37,7 +38,9 @@ public interface HelloWorld {
 
 }
 {% endhighlight %}
+
 4. Create HelloWorldImpl class, which is implementation of HelloWorld.
+
 {% highlight java %}
 package com.phapli.helloworld;
 
@@ -57,7 +60,9 @@ public class HelloWorldImpl implements HelloWorld {
 
 }
 {% endhighlight %}
+
 5. In "__WebContent/WEB-INF__" folder, create two files (_sun-jaxws.xml_, and _web.xml_)
+
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>  
 <endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">  
@@ -67,6 +72,7 @@ public class HelloWorldImpl implements HelloWorld {
 	 url-pattern="/HelloWorld"/>  
 </endpoints> 
 {% endhighlight %}
+
 {% highlight java %}
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
@@ -96,6 +102,7 @@ public class HelloWorldImpl implements HelloWorld {
 	* saaj-impl.jar
 	* stax-ex.jar
 	* streambuffer.jar
+	
 	Please add them to "__WebContent/WEB-INF/lib__"
 	
 7. Using wsgen (a tool of JDK) to generate Web service. Open terminal, go to project folder, and run this script.
@@ -105,10 +112,13 @@ wsgen -s src -d build/classes -cp build/classes com.phapli.helloworld.HelloWorld
 {% endhighlight %}
 
 	![wsgen](/resources/2015-07-24-jax-ws-webservice-example/3.PNG "wsgen")
+	
 8. Refresh your eclipse project to see the result. 
+
 	![server project](/resources/2015-07-24-jax-ws-webservice-example/4.PNG "server project")
 	
 9. Run project in server (such as tomcat, jboss ...). Go to http://localhost:8080/HelloWorld/HelloWorld to access the Web service.
+
 	![wsdl](/resources/2015-07-24-jax-ws-webservice-example/6.PNG "wsdl")
 	
 ## Create Client.
@@ -126,6 +136,7 @@ wsimport -d src -extension -keep -p com.tomica.coremb -XadditionalHeaders http:/
 	![wsimport](/resources/2015-07-24-jax-ws-webservice-example/7.PNG "wsimport")	
 
 3. Create Client class with main method to test this service.	
+
 {% highlight java %}
 package com.phapli.client;
 
