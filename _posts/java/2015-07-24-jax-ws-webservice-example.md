@@ -4,7 +4,7 @@ title: Jax-ws Webservice Example
 comments: true
 ---
 
->[Jax-ws](jax-ws.java.net) (Java API for XML Web Services) is a Java API for developing Web service with XML format (SOAP). 
+>[Jax-ws](https://jax-ws.java.net/) (Java API for XML Web Services) is a Java API for developing Web service with XML format (SOAP). 
 
 In this port, I will show you how to create a SOAP Web service in eclipse and build a client to test this service.    
 
@@ -179,6 +179,9 @@ public class Client {
 	* streambuffer.jar
  
 * Run this class to see the result.
+
+##[Source code](https://github.com/phapli/jax-ws-demo)
+
 
 ##Reference
 <http://www.mkyong.com/webservices/jax-ws/deploy-jax-ws-web-services-on-tomcat/>
