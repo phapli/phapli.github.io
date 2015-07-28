@@ -10,18 +10,17 @@ In this port, I will show you how to create a SOAP Web service in eclipse and bu
 
 ##Create Web service.
 
-1. In Eclipse IDE, menu bar, select "__File__" >> "__New__" >> "__Project__", choose "__Dynamic Web Project__".
+* In Eclipse IDE, menu bar, select "__File__" >> "__New__" >> "__Project__", choose "__Dynamic Web Project__".
 
 	![New Dynamic Web Project](/resources/2015-07-24-jax-ws-webservice-example/1.PNG "New Dynamic Web Project")
 
-2. Follow the instruction and finish.
+* Follow the instruction and finish.
 	
 	![New Dynamic Web Project](/resources/2015-07-24-jax-ws-webservice-example/2.PNG "New Dynamic Web Project")
 	
-3. Create HelloWorld interface with hello method.	
+* Create HelloWorld interface with hello method.	
 
-{% highlight java %}
-package com.phapli.helloworld;
+{% highlight java %}package com.phapli.helloworld;
 /*
  * @author: phapli
  */
@@ -39,7 +38,7 @@ public interface HelloWorld {
 }
 {% endhighlight %}
 
-4. Create HelloWorldImpl class, which is implementation of HelloWorld.
+* Create HelloWorldImpl class, which is implementation of HelloWorld.
 
 {% highlight java %}
 package com.phapli.helloworld;
@@ -61,7 +60,7 @@ public class HelloWorldImpl implements HelloWorld {
 }
 {% endhighlight %}
 
-5. In "__WebContent/WEB-INF__" folder, create two files (_sun-jaxws.xml_, and _web.xml_)
+* In "__WebContent/WEB-INF__" folder, create two files (_sun-jaxws.xml_, and _web.xml_)
 
 {% highlight xml %}
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -95,7 +94,7 @@ public class HelloWorldImpl implements HelloWorld {
 </web-app>
 {% endhighlight %}
 
-6. To generate a jax-ws, we need some libraries. 
+* To generate a jax-ws, we need some libraries. 
 	* jaxb-impl.jar
 	* jaxws-api.jar
 	* jaxws-rt.jar
@@ -105,37 +104,39 @@ public class HelloWorldImpl implements HelloWorld {
 	
 	Please add them to "__WebContent/WEB-INF/lib__"
 	
-7. Using wsgen (a tool of JDK) to generate Web service. Open terminal, go to project folder, and run this script.
-
+* Using wsgen (a tool of JDK) to generate Web service. Open terminal, go to project folder, and run this script.
+	
+	![wsgen](/resources/2015-07-24-jax-ws-webservice-example/3.PNG "wsgen")
+	
 {% highlight bash %}
 wsgen -s src -d build/classes -cp build/classes com.phapli.helloworld.HelloWorldImpl
 {% endhighlight %}
-
-	![wsgen](/resources/2015-07-24-jax-ws-webservice-example/3.PNG "wsgen")
 	
-8. Refresh your eclipse project to see the result. 
+* Refresh your eclipse project to see the result. 
 
 	![server project](/resources/2015-07-24-jax-ws-webservice-example/4.PNG "server project")
 	
-9. Run project in server (such as tomcat, jboss ...). Go to http://localhost:8080/HelloWorld/HelloWorld to access the Web service.
+* Run project in server (such as tomcat, jboss ...). Go to http://localhost:8080/HelloWorld/HelloWorld to access the Web service.
 
 	![wsdl](/resources/2015-07-24-jax-ws-webservice-example/6.PNG "wsdl")
 	
 ## Create Client.
 
-1. In Eclipse IDE, menu bar, select "__File__" >> "__New__" >> "__Project__", choose "__Java Project__".
+* In Eclipse IDE, menu bar, select "__File__" >> "__New__" >> "__Project__", choose "__Java Project__".
 
 	![New Java Project](/resources/2015-07-24-jax-ws-webservice-example/5.PNG "New Java Project")
 	
-2. Use wsimport (a tool of JDK) to generate Stub from wsdl url. Open terminal, go to project folder, and run this script.
+* Use wsimport (a tool of JDK) to generate Stub from wsdl url. Open terminal, go to project folder, and run this script.
+
+	![wsimport](/resources/2015-07-24-jax-ws-webservice-example/7.PNG "wsimport")
 	
 {% highlight bash %}
 wsimport -d src -extension -keep -p com.tomica.coremb -XadditionalHeaders http://localhost:8080/HelloWorld/HelloWorld?wsdl
 {% endhighlight %}
 
-	![wsimport](/resources/2015-07-24-jax-ws-webservice-example/7.PNG "wsimport")	
+		
 
-3. Create Client class with main method to test this service.	
+* Create Client class with main method to test this service.	
 
 {% highlight java %}
 package com.phapli.client;
@@ -167,8 +168,17 @@ public class Client {
 
 }
 {% endhighlight %}	
+
+* Add the libraries to your project.
+
+	* jaxb-impl.jar
+	* jaxws-api.jar
+	* jaxws-rt.jar
+	* saaj-impl.jar
+	* stax-ex.jar
+	* streambuffer.jar
  
-4. Run this class to see the result.
+* Run this class to see the result.
 
 ##Reference
 <http://www.mkyong.com/webservices/jax-ws/deploy-jax-ws-web-services-on-tomcat/>

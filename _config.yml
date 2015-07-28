@@ -3,7 +3,7 @@
 # Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:           pretty
 relative_permalinks: true
-highlighter: pygments
+
 
 # Setup
 title:               Phapli
@@ -35,3 +35,8 @@ pages_list:
   About: '/about'
   Archive: '/archive'
   Feed: '/atom.xml'
+  
+highlighter: pygments
+syntax-highlighting:
+  enabled : true
+  css: syntax.css
