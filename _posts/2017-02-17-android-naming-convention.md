@@ -13,7 +13,7 @@ categories: Android
 
 Về qui tắc đặt tên trong Android thì không có một qui tắc chung nào cả. Cũng giống như các ngôn ngữ lập trình khác, việc đặt tên biến, hàm, hay class chỉ đơn giản là bạn tự tạo ra cho mình một qui tắc để dễ nhớ, dễ đọc và cố gắng thỏa mãn các mục tiêu của "code đẹp". Nếu bạn vẫn chưa có 1 qui tắc cụ thể, hãy nghía qua các qui tắc sau đây.
 
-## Đặt tên package
+## I. Đặt tên package
 Theo kinh nghiệm cá nhân của mình thì có 2 cách đặt tên phổ biến:
 1. Nhóm các file java theo từng loại. Cụ thể là activity riêng, model riêng, service riêng, Với cách này mỗi khi bạn cần một activity thì cứ đơn giản là vào package activities là được.
     <br>`com.client.app` - chỉ có class Application
@@ -43,15 +43,41 @@ Theo kinh nghiệm cá nhân của mình thì có 2 cách đặt tên phổ bi�
     <br>`com.client.app.login.animation` - bao gồm các animations của màn hình login
     <br>`com.client.app.login.widgets` - bao gồm các extended/custom views của màn hình login
 
-## Đặt tên file resource
-Format chung cho resource file là:
+## II. Code Java
+### 1. Tên class
+Cách đặt tên class trong Android tuân thủ cách đặt tên class của Java, và cũng khá quen thuộc với mọi người. Đó là [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase)
 
-> < WHAT >_< WHERE >_< DESCRIPTION >_< SIZE >
+vd: LoginActivity, CommonUtil, UserService, DetailAdapter ...
+### 2. Tên biến trong class
+Các biến toàn cục nên được đặt đầu file. Ngay sau lời gọi hàm constructor và nên tuân thủ các quy tắc sau.
 
-1. drawables:
+* Private, non-static field được bắt đầu với __m__.
+* Private, static field được bắt đầu với __s__.
+* Other fields bắt đầu với một ký tự viết thường.
+* Static final fields (định nghĩa) nên được viết hoa và sử dụng "__\___" ALL_CAPS_WITH_UNDERSCORES.
+
+Example:
+
+```java
+public class MyClass {
+    public static final int SOME_CONSTANT = 42;
+    public int publicField;
+    private static MyClass sSingleton;
+    int mPackagePrivate;
+    private int mPrivate;
+    protected int mProtected;
+}
+```
+
+## III. Đặt tên file resource
+Tên resources file được viết theo format __lowercase_underscore__.
+
+### 1. Drawable files
+
+Qui tắc
 
 | Asset Type   | Prefix            |		Example              |
-|--------------| ------------------|-----------------------------|
+|--------------|-------------------|-----------------------------|
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
 | Button       | `btn_`	           | `btn_send_pressed.9.png`    |
 | Dialog       | `dialog_`         | `dialog_top.9.png`          |
@@ -61,12 +87,46 @@ Format chung cho resource file là:
 | Notification | `notification_`   | `notification_bg.9.png`     |
 | Tabs         | `tab_`            | `tab_pressed.9.png`         |
 
+Qui tắc đặt tên cho icons
+
+| Asset Type                      | Prefix             | Example                      |
+| --------------------------------| ----------------   | ---------------------------- |
+| Icons                           | `ic_`              | `ic_star.png`                |
+| Launcher icons                  | `ic_launcher`      | `ic_launcher_calendar.png`   |
+| Menu icons and Action Bar icons | `ic_menu`          | `ic_menu_archive.png`        |
+| Status bar icons                | `ic_stat_notify`   | `ic_stat_notify_msg.png`     |
+| Tab icons                       | `ic_tab`           | `ic_tab_recent.png`          |
+| Dialog icons                    | `ic_dialog`        | `ic_dialog_info.png`         |
+
+Qui tắc đặt tên cho các trạng thái của view.
+
+| State	       | Suffix          | Example                     |
+|--------------|-----------------|-----------------------------|
+| Normal       | `_normal`       | `btn_order_normal.9.png`    |
+| Pressed      | `_pressed`      | `btn_order_pressed.9.png`   |
+| Focused      | `_focused`      | `btn_order_focused.9.png`   |
+| Disabled     | `_disabled`     | `btn_order_disabled.9.png`  |
+| Selected     | `_selected`     | `btn_order_selected.9.png`  |
 
 
-https://github.com/ribot/android-guidelines/blob/master/project_and_code_guidelines.md
-https://github.com/NexMM/android-naming-conventions
-https://techtalk.vn/lam-the-nao-de-dat-ten-resource-mot-cach-hieu-qua-trong-lap-trinh-android.html
+#### 2. Layout files
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+Layout file được đặt tên theo hình thức: <WHAT>_<WHERE>
+
+| Component        | Class Name             | Layout Name                   |
+| ---------------- | ---------------------- | ----------------------------- |
+| Activity         | `UserProfileActivity`  | `activity_user_profile.xml`   |
+| Fragment         | `SignUpFragment`       | `fragment_sign_up.xml`        |
+| Dialog           | `ChangePasswordDialog` | `dialog_change_password.xml`  |
+| AdapterView item | ---                    | `item_person.xml`             |
+| Partial layout   | ---                    | `partial_stats_bar.xml`       |
+
+#### 1.2.2.3 Menu files
+
+Tương tự như layout file, các file menu cũng bắt đầu bằng từ khoá chỉ ý nghĩa __menu\___
+
+#### 1.2.2.4 Values files
+
+Các file trong thư mục values thường được sử dụng dạng số nhiều (__plural__).
+
+vd: `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
