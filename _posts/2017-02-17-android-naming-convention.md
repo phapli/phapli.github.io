@@ -121,11 +121,11 @@ Layout file được đặt tên theo hình thức: <WHAT>_<WHERE>
 | AdapterView item | ---                    | `item_person.xml`             |
 | Partial layout   | ---                    | `partial_stats_bar.xml`       |
 
-#### 1.2.2.3 Menu files
+#### 3. Menu files
 
 Tương tự như layout file, các file menu cũng bắt đầu bằng từ khoá chỉ ý nghĩa __menu\___
 
-#### 1.2.2.4 Values files
+#### 4. Values files
 
 Các file trong thư mục values thường được sử dụng dạng số nhiều (__plural__).
 
