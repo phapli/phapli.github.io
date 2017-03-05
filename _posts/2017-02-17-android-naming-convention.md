@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Android naming convention (Qui tắc đặt tên)"
+title:  "Qui tắc đặt tên (naming convention) trong Android"
 date:   2017-02-17 23:32:17 +0700
 categories: Android
 ---
