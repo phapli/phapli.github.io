@@ -130,3 +130,5 @@ Tương tự như layout file, các file menu cũng bắt đầu bằng từ kho
 Các file trong thư mục values thường được sử dụng dạng số nhiều (__plural__).
 
 vd: `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
+
+Trong phần kế tiếp, mình sẽ nói nhiều hơn đến các convention khác trong Android chứ không hẳn chỉ là cách đặt tên. Hi vọng mọi người có thể cải thiện được style code của mình.
