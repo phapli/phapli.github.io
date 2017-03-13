@@ -131,4 +131,4 @@ Các file trong thư mục values thường được sử dụng dạng số nhi
 
 vd: `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
-Trong phần kế tiếp, mình sẽ nói nhiều hơn đến các convention khác trong Android chứ không hẳn chỉ là cách đặt tên. Hi vọng mọi người có thể cải thiện được style code của mình.
+Trong phần kế tiếp, mình sẽ nói nhiều hơn đến các convention khác trong Android chứ không hẳn chỉ là cách đặt tên. Hi vọng mọi người có thể cải thiện được coding style của mình.
